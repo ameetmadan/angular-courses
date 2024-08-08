@@ -1,7 +1,8 @@
 <h2>Tasks</h2>
-
-<!-- <div *ngIf="tasks.length === 0">
-  <p>There are no tasks.</p>
-</div> -->
-
-<li>{{ userTasks }}</li>
+<ul>
+  @for (task of userTasks; track $index) {
+    <li>
+      {{task.title}}: {{task.description}}
+    </li>
+  }
+</ul>

@@ -1,7 +1,12 @@
 import { Component, computed, input, Input, output } from '@angular/core';
 // import { DUMMY_USERS } from '../dummy-users';
-
 // const randomIndex: number = Math.floor(Math.random() * DUMMY_USERS.length);
+
+type User = {
+  id: string;
+  avatar: string;
+  name: string;
+};
 
 @Component({
   selector: 'app-user',
@@ -11,22 +16,22 @@ import { Component, computed, input, Input, output } from '@angular/core';
   styleUrl: './user.component.css'
 })
 export class UserComponent {
-  @Input({ required: true }) id!: string;
+  @Input() user!: User;
+  select = output<string>();
+  // @Input({ required: true }) id!: string;
   // @Input({ required: true }) avatarUrl!: string;
   // @Input({ required: true }) name!: string;  
   // @Output() select = new EventEmitter();
-  select = output<string>();
-
-  avatarUrl = input.required<string>();
-  name = input.required<string>();
+  // avatarUrl = input.required<string>();
+  // name = input.required<string>();
 
   get imagePath() {
-    return this.avatarUrl;
+    return this.user.avatar;
   }
 
   // imagePath = computed(() => { return this.avatarUrl; });
 
   onSelectUser() {
-    this.select.emit(this.id);
+    this.select.emit(this.user.id);
   }
 }

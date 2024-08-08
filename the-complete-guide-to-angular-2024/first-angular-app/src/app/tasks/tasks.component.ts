@@ -9,11 +9,12 @@ import { DUMMY_TASKS } from '../dummy-tasks';
   styleUrl: './tasks.component.css'
 })
 export class TasksComponent { 
-  @Input({ required: true }) userId!: string;
+  @Input() userId?: string;
   // title = input.required<string>();
   // description = input.required<string>();
   tasks = DUMMY_TASKS;
   get userTasks() {
-    return this.tasks.filter(task => task.id === this.userId).map(task => task.title).join(', ');
+    return this.tasks
+    .filter(task => task.id === this.userId)
   }
 }
