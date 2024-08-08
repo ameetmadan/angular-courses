@@ -4,7 +4,8 @@
   <ul id="users">
     @for (user of users; track $index) {
       <li>
-        <app-user 
+        <app-user
+          [selected]="selectedUserId === user.id"
           [user]="users[$index]"
           (select)="onSelectUser($event)"
         />
@@ -12,7 +13,7 @@
     }
   </ul>
   @if (selectedUser) {
-    <app-tasks [userId]="selectedUser.id" />
+    <app-tasks [name]="selectedUser.name" [userId]="selectedUser.id" />
   }
 </main>
 <router-outlet />

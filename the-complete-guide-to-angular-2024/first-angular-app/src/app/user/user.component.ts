@@ -2,7 +2,7 @@ import { Component, computed, input, Input, output } from '@angular/core';
 // import { DUMMY_USERS } from '../dummy-users';
 // const randomIndex: number = Math.floor(Math.random() * DUMMY_USERS.length);
 
-type User = {
+export type User = {
   id: string;
   avatar: string;
   name: string;
@@ -18,6 +18,7 @@ type User = {
 export class UserComponent {
   @Input() user!: User;
   select = output<string>();
+  @Input({ required: true }) selected!: boolean;
   // @Input({ required: true }) id!: string;
   // @Input({ required: true }) avatarUrl!: string;
   // @Input({ required: true }) name!: string;  

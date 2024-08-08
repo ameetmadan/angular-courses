@@ -1,8 +1,25 @@
-<h2>Tasks</h2>
-<ul>
-  @for (task of userTasks; track $index) {
-    <li>
-      {{task.title}}: {{task.description}}
-    </li>
-  }
-</ul>
+@if (isAddTaskModalOpen) {
+  <app-add-task 
+    (close)="onCancelAddTask()"
+    (add)="onAddTask($event)"
+  />
+}
+
+<section id="tasks">
+  <header>
+    <h2>{{ name }}'s Tasks</h2>
+    <menu>
+      <button (click)="onCreateNewTask()">Add Task</button>
+    </menu>
+  </header>
+  <ul>
+    @for (item of userTasks; track $index) {
+      <li>
+      <app-task 
+        [task]="item"
+        (complete)="onComplete($event)"
+      />
+      </li>
+    }
+  </ul>
+</section>
