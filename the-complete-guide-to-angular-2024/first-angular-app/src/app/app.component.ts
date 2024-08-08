@@ -2,15 +2,34 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { UserComponent } from "./user/user.component";
+import { DUMMY_USERS } from './dummy-users';
+import { TasksComponent } from "./tasks/tasks.component";
+import { DUMMY_TASKS } from './dummy-tasks';
 
 // metadata for the component, where to get styles and other information
 @Component({
   selector: 'app-root', // the selector is what angular uses to find the component
   standalone: true, // if the component is a module of another component, this is false
-  imports: [RouterOutlet, HeaderComponent, UserComponent], // the imports are the components that are used in this component
+  imports: [
+    RouterOutlet, 
+    HeaderComponent, 
+    UserComponent, 
+    TasksComponent
+  ], // the imports are the components that are used in this component
   templateUrl: './app.component.html', // the template is the html that will be rendered
   styleUrl: './app.component.css' // can't clash with other styles
 })
 export class AppComponent {
+  users = DUMMY_USERS;
+  tasks = DUMMY_TASKS;
+  selectedUserId = 'u1';
   title = 'first-angular-app';
+
+  get selectedUser() {
+    return this.users.find(user => user.id === this.selectedUserId)!;
+  }
+
+  onSelectUser(id: string) {
+    this.selectedUserId = id;
+  }
 }
