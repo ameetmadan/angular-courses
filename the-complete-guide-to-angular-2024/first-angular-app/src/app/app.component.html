@@ -11,6 +11,8 @@
       </li>
     }
   </ul>
-  <app-tasks [userId]="selectedUser.id" />
+  @if (selectedUser) {
+    <app-tasks [userId]="selectedUser.id" />
+  }
 </main>
 <router-outlet />

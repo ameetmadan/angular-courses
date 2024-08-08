@@ -22,7 +22,7 @@ import { DUMMY_TASKS } from './dummy-tasks';
 export class AppComponent {
   users = DUMMY_USERS;
   tasks = DUMMY_TASKS;
-  selectedUserId = 'u1';
+  selectedUserId?: string;
   title = 'first-angular-app';
 
   get selectedUser() {
