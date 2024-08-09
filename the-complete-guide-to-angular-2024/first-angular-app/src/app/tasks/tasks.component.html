@@ -1,7 +1,7 @@
 @if (isAddTaskModalOpen) {
   <app-add-task 
-    (close)="onCancelAddTask()"
-    (add)="onAddTask($event)"
+    [userId]="userId"
+    (close)="onCloseAddTask()"
   />
 }
 
@@ -15,10 +15,7 @@
   <ul>
     @for (item of userTasks; track $index) {
       <li>
-      <app-task 
-        [task]="item"
-        (complete)="onComplete($event)"
-      />
+      <app-task [task]="item" />
       </li>
     }
   </ul>

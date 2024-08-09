@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { DUMMY_TASKS } from '../dummy-tasks';
+import { Component, Input } from '@angular/core';
 import { TaskComponent } from "./task/task.component";
-import { AddTaskComponent, NewTask } from "./add-task/add-task.component";
+import { AddTaskComponent } from "./add-task/add-task.component";
+import { TasksService } from "./tasks.service";
 
 @Component({
   selector: 'app-tasks',
@@ -11,31 +11,22 @@ import { AddTaskComponent, NewTask } from "./add-task/add-task.component";
   styleUrl: './tasks.component.css'
 })
 export class TasksComponent {
+  constructor(private tasksService: TasksService) {}
+
   isAddTaskModalOpen = false;
   @Input() userId!: string;
-  @Input() name?: string;
-  tasks = DUMMY_TASKS;
+  @Input() name!: string;
+
   get userTasks() {
-    return this.tasks
-    .filter(task => task.userId === this.userId)
+    return this.tasksService.getUserTasks(this.userId);
   }
-  onCancelAddTask() {
+
+  onComplete(id: string) {}
+
+  onCloseAddTask() {
     this.isAddTaskModalOpen = false;
   }
   onCreateNewTask() {
     this.isAddTaskModalOpen = true;
-  }
-  onComplete(id: string) {
-    this.tasks = this.tasks.filter(task => task.id !== id);
-  }
-  onAddTask(task: NewTask) {
-    const id = new Date().getTime().toString()
-    this.tasks.unshift({ 
-      id: id,
-      userId: this.userId,
-      description: task.description,
-      dueDate: task.dueDate,
-      title: task.title
-    });
   }
 }
