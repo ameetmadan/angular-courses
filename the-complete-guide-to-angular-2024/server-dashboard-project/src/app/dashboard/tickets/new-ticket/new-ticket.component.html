@@ -1,13 +1,13 @@
-<form>
+<form (ngSubmit)="onSubmit(subject.value, description.value) " #form>
   <app-control label="Subject">
-    <input type="text" placeholder="Enter subject" />
+    <input type="text" placeholder="Enter subject" #subject #input />
   </app-control>
 
   <app-control label="Description">
-    <textarea placeholder="Enter description"></textarea>
+    <textarea placeholder="Enter description" #description #input></textarea>
   </app-control>
   <p>
-    <button appButton>
+    <button appButton #btn>
       Submit
       <span class="icon">→</span>
     </button>

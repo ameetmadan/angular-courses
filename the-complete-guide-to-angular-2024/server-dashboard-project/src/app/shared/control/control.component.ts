@@ -1,4 +1,4 @@
-import { Component, input, ViewEncapsulation } from '@angular/core';
+import { Component, ContentChild, ElementRef, input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-control',
@@ -9,5 +9,6 @@ import { Component, input, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None, // if needed
 })
 export class ControlComponent {
+  @ContentChild('input') private input?: ElementRef<HTMLInputElement | HTMLTextAreaElement>;
   label = input.required<string>();
 }
