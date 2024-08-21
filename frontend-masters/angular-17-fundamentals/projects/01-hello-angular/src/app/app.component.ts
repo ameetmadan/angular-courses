@@ -1,15 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-
+import './app.component.css'
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, RouterOutlet],
-  template: `
-    <h1>If you are reading this...</h1>
-    <p>Things have worked out well! 🎉</p>
-  `,
-  styles: ``,
+  templateUrl: './app.component.html',
+  styleUrl: "./app.component.css",
 })
 export class AppComponent {}
