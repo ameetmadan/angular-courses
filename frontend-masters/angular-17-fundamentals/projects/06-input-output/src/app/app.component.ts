@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Car } from './car';
+import { ListingComponent } from "./listing/listing.component";
 
 @Component({
   selector: 'app-root',
@@ -7,38 +8,21 @@ import { Car } from './car';
   template: `
     <h1>Saved Cars {{ savedCarList.length }}</h1>
     <section class="container">
-      <!-- This article element represents and entire listing -->
-      <article class="listing">
-        <div class="image-parent">
-          <img class="product-image" src="https://placehold.co/100x100" />
-        </div>
-        <section class="details">
-          <p class="title"><!-- car make and model--></p>
-          <hr />
-          <p class="detail">
-            <span>Year</span>
-            <span><!-- year --></span>
-          </p>
-          <div class="detail">
-            <span>Transmission</span>
-            <span><!-- transmission --></span>
-          </div>
-          <p class="detail">
-            <span>Mileage</span>
-            <span><!-- miles --></span>
-          </p>
-          <p class="detail">
-            <span>Price</span>
-            <span><!-- price --></span>
-          </p>
-        </section>
-      </article>
-      <!-- end car listing markup -->
+      @for (car of carList; track $index) {        
+        <app-listing [car]="car" (save)="addCarToSavedList($event)" (delete)="removeCarFromSavedList($event)"></app-listing>
+      }
     </section>
   `,
   styles: [],
+  imports: [ListingComponent],
 })
 export class AppComponent {
+  addCarToSavedList(car: Car) {
+    this.savedCarList.push(car);
+  }
+  removeCarFromSavedList(car: Car) {
+    this.savedCarList = this.savedCarList.filter((c) => c !== car);
+  }
   savedCarList: Car[] = [];
   carList: Car[] = [
     {
@@ -66,6 +50,20 @@ export class AppComponent {
       transmission: 'Automatic',
     },
     {
+      make: 'Fjord',
+      model: 'Pocus',
+      miles: 1,
+      price: 22330,
+      year: 2023,
+      transmission: 'Automatic',
+    },    {
+      make: 'Fjord',
+      model: 'Pocus',
+      miles: 1,
+      price: 22330,
+      year: 2023,
+      transmission: 'Automatic',
+    },    {
       make: 'Fjord',
       model: 'Pocus',
       miles: 1,
